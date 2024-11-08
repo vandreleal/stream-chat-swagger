@@ -11,13 +11,15 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           output: swagger-ui
-          spec-url: https://stream-openapi.s3.amazonaws.com/chat/openapi-latest.json
-          # spec-file: openapi-latest.json
+          # spec-url: https://stream-openapi.s3.amazonaws.com/chat/openapi-latest.json
+          spec-file: openapi-latest.json
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
